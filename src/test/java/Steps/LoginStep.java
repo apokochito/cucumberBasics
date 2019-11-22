@@ -1,5 +1,6 @@
 package Steps;
 
+import Base.BaseUtil;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -8,7 +9,14 @@ import cucumber.api.java.en.Then;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginStep {
+public class LoginStep extends BaseUtil {
+
+    private BaseUtil base;
+
+    public LoginStep(BaseUtil base) {
+        this.base = base;
+    }
+
     @Given("^I navigate to login window on the website$")
     public void iNavigateToLoginWindowOnTheWebsite() {
         System.out.println("I'm navigating to the login window on the website");
@@ -48,6 +56,8 @@ public class LoginStep {
 
     @Then("^I should see the UserDetails page$")
     public void iShouldSeeTheUserDetailsPage() {
+        //Taking the dependency injection, like a global variable
+        System.out.println("The driver is: "+base.stepInfo);
         System.out.println("I should see the UserDetails page");
     }
 
