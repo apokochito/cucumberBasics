@@ -14,7 +14,7 @@ public class Hook extends BaseUtil {
     }
 
     @Before
-    public void InitializeTest(){
+    public void InitializeTest() {
         System.out.println("Opening the browser : MOCK");
 
         //Passing a WebDriver dummy instance
@@ -22,8 +22,8 @@ public class Hook extends BaseUtil {
     }
 
     @After
-    public void TearDownTest(Scenario scenario){
-        if (scenario.isFailed() == true){
+    public void TearDownTest(Scenario scenario) {
+        if (scenario.isFailed() == true) {
             System.out.println("Taking ScreenShot");
             System.out.println(scenario.getName());
         }

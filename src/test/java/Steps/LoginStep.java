@@ -1,7 +1,10 @@
 package Steps;
 
 import Base.BaseUtil;
+import Transformation.EmailTransform;
+import Transformation.StatusTransform;
 import cucumber.api.DataTable;
+import cucumber.api.Transform;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -43,9 +46,9 @@ public class LoginStep extends BaseUtil {
         List<User> users = new ArrayList<>();
         //Store all the users
         users = table.asList(User.class);
-        for (User user: users) {
-            System.out.println("The username is "+user.userName);
-            System.out.println("The passwords is "+user.password);
+        for (User user : users) {
+            System.out.println("The username is " + user.userName);
+            System.out.println("The passwords is " + user.password);
         }
     }
 
@@ -57,14 +60,24 @@ public class LoginStep extends BaseUtil {
     @Then("^I should see the UserDetails page$")
     public void iShouldSeeTheUserDetailsPage() {
         //Taking the dependency injection, like a global variable
-        System.out.println("The driver is: "+base.stepInfo);
+        System.out.println("The driver is: " + base.stepInfo);
         System.out.println("I should see the UserDetails page");
     }
 
     @And("^I enter ([^\"]*) and ([^\"]*) for Login$")
     public void iEnterUserNameAndPasswordForLogin(String userName, String password) {
-        System.out.println("Username: "+userName);
-        System.out.println("Password: "+password);
+        System.out.println("Username: " + userName);
+        System.out.println("Password: " + password);
+    }
+
+    @And("^I enter the users email address as Email:([^\"]*)$")
+    public void iEnterTheUsersEmailAddressAsEmailAdmin(@Transform(EmailTransform.class) String email) {
+        System.out.println("This is the email address: " + email);
+    }
+
+    @And("^I get an (\\d+) http response$")
+    public void iGetAnHttpResponse(@Transform(StatusTransform.class) int response) {
+        System.out.println("This is the response: " + response);
     }
 
     public class User {
