@@ -8,6 +8,8 @@ import cucumber.api.Transform;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ public class LoginStep extends BaseUtil {
     @Given("^I navigate to login window on the website$")
     public void iNavigateToLoginWindowOnTheWebsite() {
         System.out.println("I'm navigating to the login window on the website");
+        base.driver.navigate().to("http://www.executeautomation.com/demosite/Login.html");
     }
 
     @And("^I enter the UserName as \"([^\"]*)\" and Password as \"([^\"]*)\"$")
@@ -47,21 +50,25 @@ public class LoginStep extends BaseUtil {
         //Store all the users
         users = table.asList(User.class);
         for (User user : users) {
-            System.out.println("The username is " + user.userName);
-            System.out.println("The passwords is " + user.password);
+            //System.out.println("The username is " + user.userName);
+            //System.out.println("The passwords is " + user.password);
+            base.driver.findElement(By.name("UserName")).sendKeys(user.userName);
+            base.driver.findElement(By.name("Password")).sendKeys(user.password);
         }
     }
 
     @And("^I click login button$")
     public void iClickLoginButton() {
-        System.out.println("I click the login button");
+        //System.out.println("I click the login button");
+        base.driver.findElement(By.name("Login")).submit();
     }
 
     @Then("^I should see the UserDetails page$")
     public void iShouldSeeTheUserDetailsPage() {
         //Taking the dependency injection, like a global variable
-        System.out.println("The driver is: " + base.stepInfo);
-        System.out.println("I should see the UserDetails page");
+        //System.out.println("The driver is: " + base.stepInfo);
+        //System.out.println("I should see the UserDetails page");
+        Assert.assertEquals("Its not displayed",base.driver.findElement(By.id("Initial")).isDisplayed(),true);
     }
 
     @And("^I enter ([^\"]*) and ([^\"]*) for Login$")

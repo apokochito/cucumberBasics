@@ -4,6 +4,8 @@ import Base.BaseUtil;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Hook extends BaseUtil {
 
@@ -15,10 +17,12 @@ public class Hook extends BaseUtil {
 
     @Before
     public void InitializeTest() {
-        System.out.println("Opening the browser : MOCK");
-
+        //System.out.println("Opening the browser : MOCK");
         //Passing a WebDriver dummy instance
-        base.stepInfo = "Firefox Driver";
+        //base.stepInfo = "Firefox Driver";
+
+        System.setProperty("webdriver.chrome.driver", "C:\\TEMP\\chromedriver_win32\\chromedriver.exe");
+        base.driver = new ChromeDriver();
     }
 
     @After
