@@ -1,6 +1,7 @@
 package Steps;
 
 import Base.BaseUtil;
+import Pages.Login;
 import Transformation.EmailTransform;
 import Transformation.StatusTransform;
 import cucumber.api.DataTable;
@@ -13,6 +14,7 @@ import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LoginStep extends BaseUtil {
 
@@ -49,18 +51,22 @@ public class LoginStep extends BaseUtil {
         List<User> users = new ArrayList<>();
         //Store all the users
         users = table.asList(User.class);
+        Login login = new Login(base.driver);
         for (User user : users) {
             //System.out.println("The username is " + user.userName);
             //System.out.println("The passwords is " + user.password);
-            base.driver.findElement(By.name("UserName")).sendKeys(user.userName);
-            base.driver.findElement(By.name("Password")).sendKeys(user.password);
+            //base.driver.findElement(By.name("UserName")).sendKeys(user.userName);
+            //base.driver.findElement(By.name("Password")).sendKeys(user.password);
+            login.login(user.userName, user.password);
         }
     }
 
     @And("^I click login button$")
     public void iClickLoginButton() {
         //System.out.println("I click the login button");
-        base.driver.findElement(By.name("Login")).submit();
+        //base.driver.findElement(By.name("Login")).submit();
+        Login login = new Login(base.driver);
+        login.clickSubmit();
     }
 
     @Then("^I should see the UserDetails page$")
@@ -68,7 +74,7 @@ public class LoginStep extends BaseUtil {
         //Taking the dependency injection, like a global variable
         //System.out.println("The driver is: " + base.stepInfo);
         //System.out.println("I should see the UserDetails page");
-        Assert.assertEquals("Its not displayed",base.driver.findElement(By.id("Initial")).isDisplayed(),true);
+        Assert.assertEquals("Its not displayed", base.driver.findElement(By.id("Initial")).isDisplayed(), true);
     }
 
     @And("^I enter ([^\"]*) and ([^\"]*) for Login$")
