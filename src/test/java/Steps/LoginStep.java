@@ -27,6 +27,7 @@ public class LoginStep extends BaseUtil {
     @Given("^I navigate to login window on the website$")
     public void iNavigateToLoginWindowOnTheWebsite() {
         System.out.println("I'm navigating to the login window on the website");
+        System.err.println(base.driver);
         base.driver.navigate().to("http://www.executeautomation.com/demosite/Login.html");
     }
 
