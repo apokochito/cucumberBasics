@@ -1,13 +1,23 @@
 package Listeners;
 
+import Utils.ExtentReportUtil;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.gherkin.model.Feature;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import java.io.IOException;
+
 public class NGTestListener implements ITestListener {
+
+    ExtentReportUtil extentReportUtil = new ExtentReportUtil();
+
     @Override
     public void onTestStart(ITestResult result) {
         System.out.println("On test start");
+
+
     }
 
     @Override
@@ -18,6 +28,11 @@ public class NGTestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         System.out.println("On test failure");
+        try {
+            extentReportUtil.ExtentReportScreenshot();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -37,11 +52,12 @@ public class NGTestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-
+        extentReportUtil.extentReport();
+        ExtentTest features = extentReportUtil.extent.createTest(Feature.class, "Login Feature");
     }
 
     @Override
     public void onFinish(ITestContext context) {
-
+        extentReportUtil.FlushReport();
     }
 }

@@ -1,6 +1,6 @@
 package Steps;
 
-import Base.BaseUtil;
+import Utils.BaseUtil;
 import Pages.Login;
 import Transformation.EmailTransform;
 import Transformation.StatusTransform;
@@ -14,7 +14,6 @@ import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class LoginStep extends BaseUtil {
 
