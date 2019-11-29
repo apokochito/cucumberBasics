@@ -17,6 +17,7 @@ public class Hook extends BaseUtil {
     @Before
     public void InitializeTest(Scenario scenario) {
 
+        System.out.println(base.features);
         scenarioDef = base.features.createNode(scenario.getName());
 
         //System.out.println("Opening the browser : MOCK");

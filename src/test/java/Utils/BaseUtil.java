@@ -11,5 +11,5 @@ public class BaseUtil {
     public ExtentReports extentReports;
     public static ExtentTest scenarioDef;
     public static ExtentTest features;
-    public static String reportLocation = "C:/Users/Diana Elena/IdeaProjects";
+    public static String reportLocation = "C:\\Users\\Diana Elena\\IdeaProjects\\";
 }

@@ -1,6 +1,5 @@
 package Utils;
 
-import com.aventstack.extentreports.ExtentReporter;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
@@ -14,10 +13,9 @@ import java.nio.file.Files;
 public class ExtentReportUtil extends BaseUtil {
 
     String filename = reportLocation + "extentreport.html";
-    public ExtentReports extent;
 
     public void extentReport(){
-        extent = new ExtentReports();
+        extentReports = new ExtentReports();
 
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(filename);
         htmlReporter.config().setTheme(Theme.DARK);
@@ -25,7 +23,7 @@ public class ExtentReportUtil extends BaseUtil {
         htmlReporter.config().setEncoding("utf-8");
         htmlReporter.config().setReportName("Test report");
 
-        extent.attachReporter(htmlReporter);
+        extentReports.attachReporter(htmlReporter);
     }
     public void ExtentReportScreenshot() throws IOException {
 
@@ -36,6 +34,6 @@ public class ExtentReportUtil extends BaseUtil {
 
 
     public void FlushReport(){
-        extent.flush();
+        extentReports.flush();
     }
 }

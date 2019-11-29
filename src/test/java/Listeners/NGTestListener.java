@@ -1,7 +1,7 @@
 package Listeners;
 
 import Utils.ExtentReportUtil;
-import com.aventstack.extentreports.ExtentTest;
+import static Utils.BaseUtil.features;
 import com.aventstack.extentreports.gherkin.model.Feature;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -53,7 +53,8 @@ public class NGTestListener implements ITestListener {
     @Override
     public void onStart(ITestContext context) {
         extentReportUtil.extentReport();
-        ExtentTest features = extentReportUtil.extent.createTest(Feature.class, "Login Feature");
+
+        features = extentReportUtil.extentReports.createTest(Feature.class, "Login Feature");
     }
 
     @Override
