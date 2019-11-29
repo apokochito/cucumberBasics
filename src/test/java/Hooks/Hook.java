@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Hook extends BaseUtil {
 
-    private BaseUtil base;
+    public BaseUtil base;
 
     public Hook(BaseUtil base) {
         this.base = base;
@@ -16,8 +16,6 @@ public class Hook extends BaseUtil {
 
     @Before
     public void InitializeTest(Scenario scenario) {
-
-        System.out.println(base.features);
         scenarioDef = base.features.createNode(scenario.getName());
 
         //System.out.println("Opening the browser : MOCK");
